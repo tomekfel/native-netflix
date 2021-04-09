@@ -35,6 +35,16 @@ export default function Navigation({
 const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+  const options = {
+    headerBackTitleVisible: false,
+    cardStyleInterpolator: ({ current: { progress } }) => {
+      return {
+        cardStyle: {
+          opacity: progress,
+        },
+      };
+    },
+  };
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Root' component={BottomTabNavigator} />
@@ -43,7 +53,11 @@ function RootNavigator() {
         component={NotFoundScreen}
         options={{ title: 'Oops!' }}
       />
-      <Stack.Screen name='DetailsScreen' component={MovieDetailsScreen} />
+      <Stack.Screen
+        name='DetailsScreen'
+        component={MovieDetailsScreen}
+        options={() => options}
+      />
     </Stack.Navigator>
   );
 }
