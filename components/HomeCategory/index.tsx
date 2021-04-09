@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, FlatList } from 'react-native';
+import { FlatList, Pressable } from 'react-native';
 import axios from 'axios';
 
 import { Text, View } from '../../components/Themed';
@@ -11,13 +11,20 @@ interface HomeCategoryProps {
   uri: string;
 }
 
-const HomeCategory = ({ category }: { category: HomeCategoryProps }) => {
+const HomeCategory = ({
+  category,
+  navigation,
+}: {
+  category: HomeCategoryProps;
+  navigation: any;
+}) => {
   const [movies, setMovies] = React.useState([] as any);
   const [currentPage, setCurrentPage] = React.useState(1);
   const [totalPages, setTotalPages] = React.useState(1);
 
   const getPosts = async () => {
     const { data } = await axios.get(category.uri);
+    console.log(category.uri);
     setMovies(data.records);
     setCurrentPage(data.page);
     setTotalPages(data.total_pages);
@@ -32,13 +39,25 @@ const HomeCategory = ({ category }: { category: HomeCategoryProps }) => {
       const url = category.uri.replace(`&l=1`, `&l=${currentPage + 1}`);
 
       const { data } = await axios.get(url);
+      console.log(url);
       setMovies([...movies, ...data.records]);
       setCurrentPage(data.page);
       setTotalPages(data.total_pages);
     }
   };
 
-  const renderItem = ({ item }: { item: any }) => <MovieItem item={item} />;
+  const renderItem = ({ item }: { item: any }) => (
+    <Pressable
+      key={item.imdb_link}
+      onPress={() =>
+        navigation.push('DetailsScreen', {
+          item,
+        })
+      }
+    >
+      <MovieItem item={item} />
+    </Pressable>
+  );
 
   return (
     <View style={styles.list}>
