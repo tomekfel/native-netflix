@@ -95,6 +95,14 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
   },
+  icon: {
+    alignItems: 'center',
+    marginHorizontal: 15,
+  },
+  iconText: {
+    marginTop: 5,
+    color: 'darkgrey',
+  },
 });
 
 export default styles;

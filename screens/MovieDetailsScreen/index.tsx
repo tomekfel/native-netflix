@@ -2,7 +2,13 @@ import React from 'react';
 import { View, Image, Text, ImageBackground, Pressable } from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
 import styles from './styles';
-import { MaterialIcons, Entypo, AntDesign } from '@expo/vector-icons';
+import {
+  MaterialIcons,
+  Entypo,
+  AntDesign,
+  Feather,
+  FontAwesome,
+} from '@expo/vector-icons';
 
 const MovieDetailsScreen = ({
   route,
@@ -84,6 +90,22 @@ const MovieDetailsScreen = ({
       <View>
         <Text style={styles.description}>{item.imdb_description}</Text>
         <Text style={styles.genre}>{item.imdb_genre}</Text>
+
+        {/* Row with icon buttons */}
+        <View style={{ flexDirection: 'row', marginTop: 20 }}>
+          <View style={styles.icon}>
+            <AntDesign name='plus' size={24} color='white' />
+            <Text style={styles.iconText}>My List</Text>
+          </View>
+          <View style={styles.icon}>
+            <Feather name='thumbs-up' size={24} color='white' />
+            <Text style={styles.iconText}>Rate</Text>
+          </View>
+          <View style={styles.icon}>
+            <FontAwesome name='send-o' size={24} color='white' />
+            <Text style={styles.iconText}>Share</Text>
+          </View>
+        </View>
       </View>
     </View>
   );
