@@ -10,17 +10,6 @@ const styles = StyleSheet.create({
   details: {
     paddingTop: 10,
   },
-  backgroundImage: {
-    height: 300,
-  },
-  image: {
-    height: "100%",
-    width: "100%",
-    resizeMode: "contain",
-    marginLeft: 40,
-    marginTop: 40,
-    borderRadius: 5,
-  },
   titleBackground: {
     backgroundColor: "#000",
     opacity: 0.8,

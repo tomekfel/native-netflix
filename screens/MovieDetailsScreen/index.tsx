@@ -1,15 +1,15 @@
 import React from "react";
 import {
   View,
-  Image,
+  // Image,
   Text,
-  ImageBackground,
+  // ImageBackground,
   Pressable,
   FlatList,
 } from "react-native";
-import { SharedElement } from "react-navigation-shared-element";
+// import { SharedElement } from "react-navigation-shared-element";
 import {
-  MaterialIcons,
+  // MaterialIcons,
   Entypo,
   AntDesign,
   Feather,
@@ -19,6 +19,7 @@ import {
 import styles from "./styles";
 import { data } from "../../config/data";
 import EpisodeItem from "../../components/EpisodeItem";
+import VideoPlayer from "../../components/VideoPlayer";
 
 const MovieDetailsScreen = ({
   route,
@@ -28,6 +29,8 @@ const MovieDetailsScreen = ({
   navigation: any;
 }) => {
   const { item } = route.params;
+
+  const [playing, setPlaying] = React.useState(false);
 
   const renderedList = (
     <View style={styles.details}>
@@ -52,9 +55,10 @@ const MovieDetailsScreen = ({
       </View>
 
       {/* Buttons */}
-      <Pressable onPress={() => console.log("Play")} style={styles.playButton}>
+      <Pressable style={styles.playButton} onPress={() => setPlaying(!playing)}>
         <Text style={styles.playButtonText}>
-          <Entypo name="controller-play" size={16} color="black" /> Play
+          <Entypo name="controller-play" size={16} color="black" />{" "}
+          {playing ? "Pause" : "Play"}
         </Text>
       </Pressable>
       <Pressable
@@ -105,31 +109,8 @@ const MovieDetailsScreen = ({
 
   return (
     <View style={styles.container}>
-      {/* Image */}
-      <ImageBackground
-        source={
-          item.imdb_image_url
-            ? {
-                uri: item.imdb_image_url,
-              }
-            : require("../../assets/images/no-image.png")
-        }
-        style={styles.backgroundImage}
-        blurRadius={10}
-      >
-        <SharedElement id={`item.${item.imdb_image_url}.image_url`}>
-          <Image
-            style={styles.image}
-            source={
-              item.imdb_image_url
-                ? {
-                    uri: item.imdb_image_url,
-                  }
-                : require("../../assets/images/no-image.png")
-            }
-          />
-        </SharedElement>
-      </ImageBackground>
+      {/* VideoPlayer */}
+      <VideoPlayer episode={item} playing={playing} />
 
       {/* Episodes */}
       <FlatList

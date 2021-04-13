@@ -1,29 +1,12 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { AntDesign } from '@expo/vector-icons';
+import React from "react";
+import { View, Text, Image } from "react-native";
+import { AntDesign } from "@expo/vector-icons";
 
-import styles from './styles';
+import styles from "./styles";
+import { Episode } from "../../types";
 
 interface EpisodeItemProps {
-  episode: {
-    imdb_link: string;
-    release_name: string;
-    imdb_user_rating: string;
-    imdb_rating_count: string;
-    imdb_title: string;
-    imdb_description: string;
-    imdb_genre: string;
-    imdb_image_url: string;
-    imdb_rating: string;
-    imdb_duration: string;
-    imdb_trailer_url: string;
-    version: string;
-    yt_trailer_url: null;
-    imdb_date_published: string;
-    imdb_update_date: string;
-    create_date: string;
-    update_date: string;
-  };
+  episode: Episode;
 }
 
 const EpisodeItem = (props: EpisodeItemProps) => {
@@ -38,7 +21,7 @@ const EpisodeItem = (props: EpisodeItemProps) => {
               ? {
                   uri: episode.imdb_image_url,
                 }
-              : require('../../assets/images/no-image.png')
+              : require("../../assets/images/no-image.png")
           }
         />
 
@@ -48,9 +31,9 @@ const EpisodeItem = (props: EpisodeItemProps) => {
         </View>
 
         <AntDesign
-          name='download'
+          name="download"
           size={24}
-          color='white'
+          color="white"
           onPress={() => console.log(`Download ${episode.imdb_title}`)}
         />
       </View>
