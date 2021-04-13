@@ -1,7 +1,13 @@
 import React from 'react';
-import { View, Image, Text, ImageBackground, Pressable } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  ImageBackground,
+  Pressable,
+  FlatList,
+} from 'react-native';
 import { SharedElement } from 'react-navigation-shared-element';
-import styles from './styles';
 import {
   MaterialIcons,
   Entypo,
@@ -9,6 +15,10 @@ import {
   Feather,
   FontAwesome,
 } from '@expo/vector-icons';
+
+import styles from './styles';
+import { data } from '../../config/data';
+import EpisodeItem from '../../components/EpisodeItem';
 
 const MovieDetailsScreen = ({
   route,
@@ -107,6 +117,12 @@ const MovieDetailsScreen = ({
           </View>
         </View>
       </View>
+
+      {/* Episodes */}
+      <FlatList
+        data={data.records}
+        renderItem={({ item }) => <EpisodeItem episode={item} />}
+      />
     </View>
   );
 };
