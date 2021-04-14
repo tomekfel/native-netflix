@@ -1,7 +1,7 @@
 // 20210409105718
 // https://beatporttopcharts.com/php/api/movie/search.php?s=&l=1&c=7&rating_count=1,MAX
 
-export const data = {
+export const DATA = {
   records: [
     {
       imdb_link: 'https://www.imdb.com/title/tt11655202/',

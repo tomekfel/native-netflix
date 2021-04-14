@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { FlatList } from 'react-native';
+import { API_KEY } from '@env';
 
 import { View } from '../../components/Themed';
 import HomeCategory from '../../components/HomeCategory';
@@ -10,6 +11,8 @@ export default function HomeScreen({ navigation }: { navigation: any }) {
   const renderItem = ({ item }: { item: any }) => (
     <HomeCategory category={item} navigation={navigation} />
   );
+
+  console.log(API_KEY);
 
   return (
     <View style={styles.container}>
